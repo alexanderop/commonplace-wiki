@@ -106,7 +106,17 @@ pnpm verify
 pnpm test:compat
 ```
 
-Upload `apps/wiki/.output/public` to a static host. To build below a path, use `NUXT_APP_BASE_URL=/wiki/ pnpm verify` and the same environment for preview and tests. No deployment has been configured or performed by this project.
+Upload `apps/wiki/.output/public` to a static host. To build below a path, use `NUXT_APP_BASE_URL=/wiki/ pnpm verify` and the same environment for preview and tests. GitHub Pages deployment is included in `.github/workflows/ci.yml`. In your own
+repository, open Settings → Pages and choose **GitHub Actions** as the source.
+Push to `main` (or run CI manually on `main`): after both verification jobs pass,
+a fresh checkout builds the public edition and deploys it. The repository base
+path comes from GitHub Pages automatically, including root/custom-domain sites.
+Synthetic test sources are used only in verification and never copied into the
+deployment checkout. No API keys or extra deployment secrets are needed.
+
+The reference site is https://alexanderop.github.io/commonplace-wiki/.
+Update this link after creating your own template repository. Private content,
+raw files and personal builds are never uploaded by the deployment job.
 
 ## Verify behavior
 
