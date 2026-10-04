@@ -1,6 +1,6 @@
 # Commonplace logo
 
-An open book with three connected nodes represents sources becoming connected knowledge. Terracotta on charcoal matches the default dark interface.
+A pink open book merges into two brain lobes, with neural circuit terminals representing AI. The single compact mark combines stored knowledge, human understanding and artificial intelligence on a dark charcoal background.
 
 Generated with the built-in image generation tool. The original raster is preserved in `apps/wiki/public/brand/logo-master.png`; PNG exports are resized with macOS `sips`, with no added runtime dependency.
 
@@ -15,4 +15,4 @@ All paths are relative to `apps/wiki/public/brand`. The head and manifest use th
 
 ## Generation prompt
 
-Use case: logo-brand. Create one finished square app icon for Commonplace, a personal Markdown LLM wiki that connects sources, notes and insights. Minimal geometric editorial brand mark: an open book formed from two simple warm terracotta strokes, with three small connected circular nodes integrated into its top edge to suggest a knowledge graph. One highly coherent compact symbol, generous negative space, bold enough to read at 32 pixels. Flat solid terracotta #d18b70 symbol on completely flat dark charcoal #191b19 background filling the entire square edge to edge. Mark entirely within the central 60 percent of the square for maskable PWA safe area. Clean precise vector-like contours, balanced symmetry, no texture, no gradient, no shadow, no 3D, no border, no rounded outer tile, no text, no letters, no watermark. Deliver only the single icon image, not a presentation board.
+Use case: logo-brand edit. Edit target: the supplied Commonplace app icon. Redesign the symbol as a minimal fusion of a BRAIN, an OPEN BOOK, and AI. Replace the terracotta with vivid warm pink #f472b6. Preserve the square edge-to-edge dark charcoal background #191b19 and the generous centered app-icon composition. The open book's two facing pages should also form the two lobes of a stylized brain: a gently scalloped upper contour and just two simple interior curved folds. Integrate two or three very small neural circuit terminals into those folds to suggest artificial intelligence. One unified clever silhouette, not three separate symbols. Thick clean rounded strokes and very few details, recognizable at 32 pixels. Keep all pink pixels within the central 60 percent of the square, for a maskable PWA. Flat vector-like artwork with uniform solid colors, no shading, no texture, no gradients, no glow, no shadow, no outer rounded tile, no text, no letters, no watermark. Deliver a single finished square icon.
