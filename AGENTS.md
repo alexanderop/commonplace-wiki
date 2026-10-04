@@ -31,3 +31,10 @@ When the user asks to ingest a source:
 For questions, search the Markdown catalog and answer with note/source references. Save an answer as an insight when requested. For maintenance, inspect orphan notes, broken references, duplicate topics, stale claims and contradictions; distinguish mechanical link errors from claims requiring new evidence. The app derives its catalog and backlinks, so there is no second hand-maintained index.
 
 For source notes, assign `resourceType`: `blog`, `youtube`, `podcast`, `film`, `book`, `documentation` or `other`. Classify the actual source medium, not the topic being discussed. Use `other` when unknown. Do not assign a resource type to concepts or insights. Keep the source URL and author when available; do not invent examples to fill empty resource categories.
+
+## Page quality gates
+
+- `tests/support/generate-page-audits.mjs` derives page scenarios from production HTML. Keep route coverage automatic and compatible with empty/custom Markdown collections.
+- Page audits scan the full DOM with axe, including search and mobile navigation states. Preserve contrast checks; fix violations instead of suppressing them.
+- `tests/steps/browser-health.ts` observes errors before navigation and fails all scenarios on hydration mismatches or uncaught browser errors. Guard scenarios prove detection with intentional faults in isolated pages.
+- Wait for `data-hydrated` before post-hydration interaction; do not replace readiness with fixed sleeps.

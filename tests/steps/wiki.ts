@@ -1,9 +1,6 @@
 import { expect, type Page } from '@playwright/test'
 import { createBdd } from 'playwright-bdd'
-const { Given, When, Then, Before, After } = createBdd()
-const browserErrors = new WeakMap<Page, string[]>()
-After(async ({ page }) => { expect(browserErrors.get(page) ?? []).toEqual([]) })
-Before(async ({ page }) => { browserErrors.set(page, []); page.on('pageerror', error => browserErrors.get(page)?.push(error.message)); page.on('requestfailed', request => console.error('REQUEST FAILED', request.url(), request.failure()?.errorText)); page.on('pageerror', error => console.error('BROWSER ERROR', error.message)); page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') console.log('BROWSER', message.text()) }) })
+const { Given, When, Then } = createBdd()
 Given('I open the knowledge library', async ({ page }) => { await page.goto('./'); await expect(page.getByRole('heading', { name: 'Gute Ideen. Neue Verbindungen.' })).toBeVisible(); await page.screenshot({ path: '.audit/screenshots/desktop.png' }) })
 Given('I open the knowledge graph', async ({ page }) => { await page.goto('./graph') })
 When('I open the note {string}', async ({ page }, title: string) => { await page.locator('main').getByRole('link').filter({ has: page.getByRole('heading', { name: title, exact: true }) }).click() })

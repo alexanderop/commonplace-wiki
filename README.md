@@ -98,7 +98,7 @@ pnpm exec playwright install chromium firefox
 pnpm test:compat
 ```
 
-The default Gherkin suite works with your current notes, including an empty collection. It covers rendering, search, preferences, keyboard behavior and actual offline navigation. `pnpm test:demo` also runs the original example-specific journeys when the starter notes are unchanged. These tests use the built production app. `pnpm verify` runs type checking, generation and output privacy checks.
+The default Gherkin suite works with your current notes, including an empty collection. It covers rendering, search, preferences, keyboard behavior and actual offline navigation. Every published page also receives axe accessibility audits and hydration checks across five reader profiles (fresh storage, saved dark/light themes, German/English, desktop/mobile). Search dialogs and mobile navigation are scanned too. See [the audit coverage and upstream research](docs/testing.md). `pnpm test:demo` also runs the original example-specific journeys when the starter notes are unchanged. These tests use the built production app. `pnpm verify` runs type checking, generation and output privacy checks.
 
 ## Content flow
 

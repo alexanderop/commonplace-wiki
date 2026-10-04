@@ -19,3 +19,5 @@ raw/*
 !raw/README.md
 
 dist
+
+.generated-tests

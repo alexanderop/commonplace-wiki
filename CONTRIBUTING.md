@@ -7,3 +7,5 @@ Keep the UI package independent of Nuxt and wiki content. Use its public exports
 The normal browser suite works with your current Markdown collection. `pnpm test:demo` additionally runs the original example-specific journeys; use it when the twelve starter notes are intact. CI tests both `/` and `/wiki/` and injects a synthetic private marker to check the publication boundary.
 
 Do not commit personal notes, source inbox files, credentials or generated output. Keep pull requests focused and explain the user-visible behavior and validation.
+
+Page audits are generated from the production HTML before each `pnpm test:compat` run. Do not edit `.generated-tests` or silence accessibility rules to make CI green. Fix violations in the component or design tokens. The shared browser-health hook fails every scenario on hydration mismatches and uncaught browser errors. See [testing details](docs/testing.md).

@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   css: ['@commonplace/ui/styles.css', '~/assets/main.css'],
   build: { transpile: ['@commonplace/ui'] },
   devtools: { enabled: false },
+  debug: { hydration: true },
   app: { baseURL, head: { script: [{ innerHTML: "try{document.documentElement.dataset.theme=localStorage.getItem('commonplace-theme')==='light'?'light':'dark'}catch{document.documentElement.dataset.theme='dark'}" }], title: 'Commonplace · Dein verbundenes Wissen', htmlAttrs: { lang: 'de' }, meta: [{ name: 'theme-color', content: '#191b19' }, { name: 'description', content: 'Ein Ort für gute Gedanken. Ein persönliches Wiki aus Quellen, Themen und Erkenntnissen.' }], link: [{ rel: 'icon', type: 'image/png', sizes: '32x32', href: `${baseURL}brand/icon-32.png` }, { rel: 'apple-touch-icon', sizes: '180x180', href: `${baseURL}brand/icon-180.png` }] } },
   runtimeConfig: { public: { audience } },
   content: { experimental: { sqliteConnector: 'native' } },

@@ -31,7 +31,7 @@ jobs:
       - run: pnpm verify
       - run: pnpm test:compat
       - uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
         with:
           name: browser-report-${{ strategy.job-index }}
           path: |
