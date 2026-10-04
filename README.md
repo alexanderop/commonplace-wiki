@@ -29,7 +29,8 @@ apps/wiki/          Nuxt app, Markdown content, content compiler and static outp
 packages/ui/        Owned Vue components, Reka UI primitives and theme tokens
 tests/              Executable Gherkin/Playwright app journeys
 raw/                Immutable source inbox
-docs/               Knowledge activity log
+docs/               Public activity log and project documentation
+.agents/skills/     Wiki agent skills, playbooks and principles
 ```
 
 Commands run from the workspace root. `@commonplace/wiki` consumes `@commonplace/ui` through `workspace:*`. The UI package is independent of Nuxt, content and translations. Component folders and public exports follow the organization used by shadcn-vue; implementations are owned here and use Reka UI directly. See [UI package](packages/ui/README.md) for its API. No shadcn-vue or React package is installed.
@@ -104,11 +105,15 @@ The default Gherkin suite works with your current notes, including an empty coll
 
 Markdown files are the originals. The compiler parses them once with Comark and writes validated JSON records into an ignored directory. Nuxt Content queries those records. Articles, full-text search, headings and relationships all derive from the same Comark document. The browser renderer does not parse Markdown again.
 
-The twelve public notes are examples, not a record of talks you watched. V1 is a reader. Browser editing, link capture, LLM ingestion and Git synchronization are not implemented.
+The twelve public notes are examples, not a record of talks you watched. V1 is a reader. Browser editing, an in-browser LLM service and Git synchronization are not implemented. Repository-based agent workflows support capture and knowledge maintenance.
 
 ## Work with a coding agent
 
-Keep original sources in `raw/`. Ask your agent, for example: “Read raw/my-talk.md, integrate it into the private wiki and connect it to existing topics.” The root `AGENTS.md` defines ingestion, citation, privacy and maintenance rules. The agent edits ordinary Markdown and appends `docs/wiki-log.md`; review the Git diff before committing. This is a file-based agent workflow, not an in-browser LLM service.
+The entrypoint is [.agents/skills/wiki/SKILL.md](.agents/skills/wiki/SKILL.md). Ask your repository-aware agent: “Use the wiki skill to capture this YouTube URL privately,” “Read raw/my-talk.md and connect it to existing topics,” or “What do my notes say about dependency injection?” Agents with project skill discovery can select `wiki`; otherwise ask them to read that exact entrypoint. No global plugin or hook is installed.
+
+The router selects YouTube, article, podcast, book, film, question or maintenance playbooks. Shared principles govern evidence, note reuse, meaningful connections and private-by-default capture. Source inspection reads authored Markdown and detects known duplicate URL variants; transcript acquisition uses available tools and reports missing evidence honestly.
+
+Private notes and private activity (`raw/wiki-log.md`) stay ignored; only public changes go in `docs/wiki-log.md`. Review private files directly as well as the Git diff. Capturing a source does not authorize publication, commit or push. See [agent workflows and evaluation cases](docs/agent-workflows.md) for capabilities and limits.
 
 Source notes may supply `sourceUrl` and `author`; the article renders an original-source link. To prepare a public edition, explicitly select the notes for `apps/wiki/content/public` and resolve their links before building.
 

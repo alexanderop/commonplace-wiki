@@ -10,9 +10,10 @@
     "content": "pnpm --filter @commonplace/wiki content",
     "build:personal": "pnpm --filter @commonplace/wiki build:personal",
     "typecheck": "pnpm --filter @commonplace/ui typecheck && pnpm --filter @commonplace/wiki typecheck",
-    "verify": "pnpm --filter @commonplace/ui typecheck && pnpm --filter @commonplace/wiki verify",
+    "verify": "pnpm skills:check && pnpm --filter @commonplace/ui typecheck && pnpm --filter @commonplace/wiki verify",
     "test:compat": "node tests/support/generate-page-audits.mjs && bddgen && playwright test",
-    "test:demo": "WIKI_TEST_DEMO=1 pnpm test:compat"
+    "test:demo": "WIKI_TEST_DEMO=1 pnpm test:compat",
+    "skills:check": "node scripts/check-wiki-skills.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

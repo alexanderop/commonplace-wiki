@@ -1,3 +1,3 @@
-# Wiki activity
+# Public wiki activity
 
-Append ingestion, saved-query and maintenance entries here. No personal sources have been processed in this template.
+Append public ingestion, saved-query and maintenance changes here. Log private activity only in ignored `raw/wiki-log.md`; never put private titles, IDs or source URLs in this tracked file. No personal sources have been processed in this template.

@@ -26,7 +26,7 @@ When the user asks to ingest a source:
 3. Default new personal knowledge to `apps/wiki/content/private`. Publish only when the user explicitly requests public content. Public notes may not reference private notes.
 4. Create a `kind: source` note with `sourceUrl` and `author` when known, a concise summary, limitations and links to related topic notes. Set `demo: false`. Mark interpretations as interpretations; quotes and timestamps need source evidence.
 5. Add or revise concept/insight pages where useful. Preserve disagreements and link supporting or contradictory source notes instead of silently replacing claims.
-6. Append a dated entry to `docs/wiki-log.md` describing the source and changed note IDs. Run `pnpm content` for the intended audience and inspect the Git diff. Commit or publish only when requested.
+6. Append public changes to `docs/wiki-log.md`; log private activity only in ignored `raw/wiki-log.md` so private IDs and source URLs never enter the public repository. Run `pnpm content` for the intended audience and inspect the Git diff. Commit or publish only when requested.
 
 For questions, search the Markdown catalog and answer with note/source references. Save an answer as an insight when requested. For maintenance, inspect orphan notes, broken references, duplicate topics, stale claims and contradictions; distinguish mechanical link errors from claims requiring new evidence. The app derives its catalog and backlinks, so there is no second hand-maintained index.
 
@@ -38,3 +38,7 @@ For source notes, assign `resourceType`: `blog`, `youtube`, `podcast`, `film`, `
 - Page audits scan the full DOM with axe, including search and mobile navigation states. Preserve contrast checks; fix violations instead of suppressing them.
 - `tests/steps/browser-health.ts` observes errors before navigation and fails all scenarios on hydration mismatches or uncaught browser errors. Guard scenarios prove detection with intentional faults in isolated pages.
 - Wait for `data-hydrated` before post-hydration interaction; do not replace readiness with fixed sleeps.
+
+## Wiki agent workflows
+
+For capture, wiki questions, connections and maintenance, use [.agents/skills/wiki/SKILL.md](.agents/skills/wiki/SKILL.md). Skills live in this repository and are scoped to wiki work; do not install global hooks. The router loads the relevant playbook and shared principles. Run `pnpm skills:check` after editing these resources. Private capture does not authorize publishing or committing.
