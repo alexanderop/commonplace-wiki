@@ -31,3 +31,18 @@ In the body record:
 - **Limitations:** unavailable transcript, excerpts only, unclear attribution or conflicting evidence.
 
 These are content requirements, not mandatory identical headings for every medium. Store acquisition details in ignored raw provenance. Public notes must not contain private raw paths or private IDs. Use `[Topic](/notes/stable-id)` links. Preserve useful Comark components already supported by the renderer; do not invent new tags during ingestion.
+
+### Author identity
+
+Keep `author` when attribution is known. Source notes link this name to a derived
+resource overview. Reuse `authorId` (a lowercase hyphenated ID) across an author's
+sources when supplied; this keeps links stable across display-name changes and
+separates namesakes. Optional `authorUrl` must be an evidenced HTTP(S) profile or
+website. Keep name and website consistent for an ID; never invent attribution.
+Authors and counts are derived from the selected publication audience.
+
+For multiple contributors use `contributors: [{ id, name, roles, url }]` instead
+of legacy author fields. Valid roles are `author`, `host`, `guest`, `editor`,
+`translator`, `director`, `speaker`, `organization`. A role applies to the source,
+not globally to the person. Reuse stable IDs, separate namesakes, and combine
+multiple roles in one entry. Only credit roles supported by the inspected source.

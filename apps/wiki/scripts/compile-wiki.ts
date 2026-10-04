@@ -2,7 +2,7 @@ import { readdir, readFile, mkdir, writeFile, rm, rename } from 'node:fs/promise
 import { resolve, join } from 'node:path'
 import { parseMarkdown, type Node } from 'comark'
 import toc from 'comark/plugins/toc'
-import { compiledNoteSchema, noteMetadataSchema, type Note, type Relation } from '../shared/wiki.ts'
+import { contributorsFor, compiledNoteSchema, noteMetadataSchema, type Note, type Relation } from '../shared/wiki.ts'
 
 const audience = process.env.WIKI_AUDIENCE ?? 'public'
 if (!['public', 'personal'].includes(audience)) throw new Error('WIKI_AUDIENCE must be public or personal')
@@ -45,6 +45,21 @@ for (const folder of audience === 'personal' ? ['public', 'private'] : ['public'
     document.nodes.forEach(visit)
     const unique = relations.filter((relation, i) => relations.findIndex(r => r.target === relation.target && r.kind === relation.kind) === i)
     notes.push(compiledNoteSchema.parse({ ...metadata, relations: unique, document: JSON.stringify(document), markdown, headings, searchText: words.join(' '), readingMinutes: Math.max(1, Math.ceil(words.join(' ').split(/\s+/).length / 180)) }))
+  }
+}
+const authors = new Map<string, { name: string; url?: string }>()
+for (const note of notes) {
+  if ((note.authorId || note.authorUrl) && !note.author) throw new Error(`${note.noteId}: author metadata requires author`)
+  if (note.contributors.length && (note.author || note.authorId || note.authorUrl)) throw new Error(`${note.noteId}: use contributors or legacy author fields, not both`)
+  if (note.kind !== 'source' && note.contributors.length) throw new Error(`${note.noteId}: contributors are only allowed on source notes`)
+  if (note.kind !== 'source') continue
+  const seen = new Set<string>()
+  for (const credit of contributorsFor(note)) {
+    if (seen.has(credit.id)) throw new Error(`${note.noteId}: duplicate contributor ${credit.id}; combine roles in one entry`)
+    seen.add(credit.id)
+    const previous = authors.get(credit.id)
+    if (previous && (previous.name !== credit.name || previous.url && credit.url && previous.url !== credit.url)) throw new Error(`${note.noteId}: conflicting contributor identity ${credit.id}; use consistent metadata or distinct ids`)
+    authors.set(credit.id, { name: credit.name, url: credit.url ?? previous?.url })
   }
 }
 const ids = new Set(notes.map(note => note.noteId))

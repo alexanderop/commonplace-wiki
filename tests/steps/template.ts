@@ -11,7 +11,7 @@ Given('I open my template wiki', async ({ page }) => {
     if (!localStorage.getItem('commonplace-theme')) localStorage.setItem('commonplace-theme', 'dark')
   })
   await page.goto('./')
-  await expect(page.getByRole('combobox', { name: en.language })).toHaveValue('en')
+  await expect(page.getByRole('combobox', { name: en.language })).toHaveText('English')
   await expect(page.locator('main').getByRole('heading', { level: 1 })).toBeVisible()
 })
 Then('the library reflects my Markdown files', async ({ page }) => {
@@ -44,11 +44,11 @@ Then('the template and graph work without a network', async ({ page }) => {
 })
 When('I change the template appearance and language', async ({ page }) => {
   await page.getByRole('button', { name: en.lightTheme }).click()
-  await page.getByRole('combobox', { name: en.language }).selectOption('de')
+  await page.getByRole('combobox', { name: en.language }).click(); await page.getByRole('option', { name: 'Deutsch', exact: true }).click()
   await page.reload()
 })
 Then('the template remembers my choices after reload', async ({ page }) => {
-  await expect(page.getByRole('combobox', { name: de.language })).toHaveValue('de')
+  await expect(page.getByRole('combobox', { name: de.language })).toHaveText('Deutsch')
   await expect(page.getByRole('button', { name: de.darkTheme })).toBeVisible()
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
 })

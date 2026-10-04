@@ -27,7 +27,11 @@ jobs:
       - name: Install browsers
         run: pnpm exec playwright install --with-deps chromium firefox
       - name: Add synthetic private canary
-        run: cp tests/fixtures/private-note.md apps/wiki/content/private/private-fixture.md
+        run: |
+          cp tests/fixtures/private-note.md apps/wiki/content/private/private-fixture.md
+          cp tests/fixtures/private-credit.md apps/wiki/content/private/private-credit-fixture.md
+      - name: Add synthetic multi-contributor sources
+        run: cp tests/fixtures/contributors/*.md apps/wiki/content/public/
       - run: pnpm verify
       - run: pnpm test:compat
       - uses: actions/upload-artifact@v4

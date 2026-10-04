@@ -47,8 +47,8 @@ Then('the light design is active', async ({ page }) => {
 When('I activate the light design', async ({ page }) => { await page.getByRole('button', { name: 'Helles Design aktivieren' }).click() })
 When('I activate the dark design', async ({ page }) => { await page.getByRole('button', { name: 'Dunkles Design aktivieren' }).click() })
 When('I reload the page', async ({ page }) => { await page.reload() })
-When('I choose English', async ({ page }) => { await page.getByRole('combobox', { name: 'Sprache / Language' }).selectOption('en') })
-When('I choose German', async ({ page }) => { await page.getByRole('combobox', { name: 'Sprache / Language' }).selectOption('de') })
+When('I choose English', async ({ page }) => { await page.getByRole('combobox', { name: 'Sprache / Language' }).click(); await page.getByRole('option', { name: 'English', exact: true }).click() })
+When('I choose German', async ({ page }) => { await page.getByRole('combobox', { name: 'Sprache / Language' }).click(); await page.getByRole('option', { name: 'Deutsch', exact: true }).click() })
 Then('the interface is English', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
   await expect(page.getByRole('heading', { name: 'Good ideas. New connections.' })).toBeVisible()
@@ -61,7 +61,7 @@ Then('the article interface is English and the note stays German', async ({ page
   await expect(page.getByText('Reading time', { exact: true })).toBeVisible()
   await expect(page.locator('.article-description')).toHaveText('Abhängigkeiten sichtbar machen, damit Verhalten nachvollziehbar und prüfbar bleibt.')
   await expect(page.getByRole('button', { name: /Copy link$/ })).toBeVisible()
-  await expect(page.getByRole('combobox', { name: 'Sprache / Language' })).toHaveValue('en')
+  await expect(page.getByRole('combobox', { name: 'Sprache / Language' })).toHaveText('English')
 })
 Then('the article interface is German', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')

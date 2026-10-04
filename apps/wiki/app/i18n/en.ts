@@ -1,6 +1,25 @@
 import type de from './de'
 
 export default {
+  "contributors": "Contributors",
+  "credit_author": "Author",
+  "credit_host": "Host",
+  "credit_guest": "Guest",
+  "credit_editor": "Editor",
+  "credit_translator": "Translator",
+  "credit_director": "Director",
+  "credit_speaker": "Speaker",
+  "credit_organization": "Organization",
+
+  "authors": "Contributors",
+  "author": "Author",
+  "authorResources": "Resources by {name}",
+  "authorCount": "{count} resources",
+  "authorWebsite": "Website",
+  "noAuthors": "No contributors recorded yet.",
+  "authorMissing": "Contributor not found",
+  "authorsIntro": "Explore the people and organizations behind your sources.",
+
   "skip": "Skip to content",
   "home": "Commonplace home",
   "navigation": "Main navigation",

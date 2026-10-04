@@ -1,4 +1,23 @@
 export default {
+  "contributors": "Mitwirkende",
+  "credit_author": "Autor",
+  "credit_host": "Host",
+  "credit_guest": "Gast",
+  "credit_editor": "Herausgeber",
+  "credit_translator": "Übersetzung",
+  "credit_director": "Regie",
+  "credit_speaker": "Vortrag",
+  "credit_organization": "Organisation",
+
+  "authors": "Urheber",
+  "author": "Autor",
+  "authorResources": "Ressourcen von {name}",
+  "authorCount": "{count} Ressourcen",
+  "authorWebsite": "Website",
+  "noAuthors": "Noch keine Urheber erfasst.",
+  "authorMissing": "Urheber nicht gefunden",
+  "authorsIntro": "Entdecke die Menschen und Organisationen hinter deinen Quellen.",
+
   "skip": "Zum Inhalt springen",
   "home": "Commonplace Startseite",
   "navigation": "Hauptnavigation",

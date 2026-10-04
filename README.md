@@ -147,3 +147,46 @@ This classifies a resource; it does not claim you watched it or automatically im
 ## License
 
 MIT; see [LICENSE](LICENSE). The license covers this template code and original sample notes. You are responsible for rights to sources you add.
+
+### Authors
+
+Source notes can link to an author overview. Add `author: Ursula K. Le Guin`
+and optionally `authorId: ursula-le-guin` and `authorUrl: https://www.ursulakleguin.com/`
+to Markdown frontmatter. Use the same name and ID across that author's resources.
+An explicit stable ID keeps links unchanged when a display name changes and
+separates different people with the same name. Without an ID, a slug is derived
+from the name; names without Latin letters need an explicit ID. Conflicting
+names or profile URLs under one ID fail compilation. Do not invent an author
+when attribution is unknown. Organizations can also be credited as authors.
+
+`/authors` lists authors; `/authors/<id>` groups their source notes. These pages,
+resource counts, search and offline output are derived only from the selected
+publication audience. No separate author index needs to be maintained.
+
+### Multiple contributors
+
+A source may credit several people or organizations. Roles belong to each source,
+so the same person can be an author of a book and a guest on a podcast:
+
+```yaml
+contributors:
+  - id: jane-doe
+    name: Jane Doe
+    roles: [host, editor]
+    url: https://example.com/jane
+  - id: sam-example
+    name: Sam Example
+    roles: [guest]
+```
+
+Supported roles: `author`, `host`, `guest`, `editor`, `translator`, `director`,
+`speaker`, `organization`. Omitted roles default to `author`. Reuse stable IDs
+across resources; namesakes need distinct IDs. One entry per contributor per
+source, with multiple roles if needed. Each resource is counted once on each
+contributor's overview. The existing `author`/`authorId`/`authorUrl` format still
+works. Do not mix it with a nonempty `contributors` list. Missing credits remain
+unknown; do not invent them. Website URLs and names for one ID must be consistent.
+
+CI adds the fictional sources in `tests/fixtures/contributors/` to exercise
+coauthors, multiple roles, namesakes, navigation and offline author pages. They
+are not part of the template's authored content.
