@@ -47,8 +47,7 @@ Feature: A connected offline knowledge library
     Given I open the knowledge library
     When I use a small screen
     Then the library fits the screen
-    When I open the mobile menu
-    And I search for "Wiederentdeckung"
+    When I search for "Wiederentdeckung"
     Then I find the note "Wissen, das bleibt"
 
   Scenario: Open an unknown note

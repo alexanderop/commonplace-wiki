@@ -1,4 +1,5 @@
 :root {
+  --control-target: 44px;
   color-scheme: dark;
   --paper: #191b19;
   --ink: #eeeee5;

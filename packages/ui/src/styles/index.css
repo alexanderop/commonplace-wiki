@@ -7,6 +7,8 @@
   gap: 8px;
   font: inherit;
   cursor: pointer;
+  min-height: var(--control-target);
+  min-width: var(--control-target);
   color: var(--ink);
   background: transparent;
   border: 1px solid transparent;

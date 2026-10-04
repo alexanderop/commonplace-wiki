@@ -28,7 +28,7 @@ Then('the library fits the screen', async ({ page, browserName }) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true)
   await page.screenshot({ path: `.audit/screenshots/${browserName}-mobile.png`, fullPage: true })
 })
-When('I open the mobile menu', async ({ page }) => { await page.getByRole('button', { name: 'Menü ☰' }).click(); await expect(page.getByRole('button', { name: /Gedanken finden/ })).toBeVisible() })
+When('I open the mobile menu', async ({ page }) => { await page.getByRole('button', { name: 'Menü ☰' }).click(); await expect(page.getByRole('dialog')).toBeVisible() })
 Given('I open an unknown note', async ({ page }) => { const response = await page.goto('./notes/does-not-exist'); expect(response?.status()).toBe(404) })
 Then('I see a not found response', async ({ page }) => { await expect(page.getByText('Not found', { exact: true })).toBeVisible() })
 
@@ -67,7 +67,7 @@ Then('the article interface is German', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'de')
   await expect(page.getByRole('heading', { name: 'Hier kommt der Gedanke vor' })).toBeVisible()
 })
-When('I filter resources to {string}', async ({ page }, label: string) => { await page.getByRole('group', { name: 'Ressourcenarten' }).getByRole('button', { name: new RegExp(`^${label}`) }).click() })
+When('I filter resources to {string}', async ({ page }, label: string) => { await page.getByRole('group', { name: 'Bibliothek filtern' }).getByRole('button', { name: /^Quellen/ }).click(); await page.getByRole('group', { name: 'Ressourcenarten' }).getByRole('button', { name: new RegExp(`^${label}`) }).click() })
 Then('I see three documentation resources', async ({ page }) => {
   await expect(page.locator('.note-grid .note-card')).toHaveCount(3)
   for (const card of await page.locator('.note-grid .note-card').all()) await expect(card.locator('.card-top')).toContainText('Dokumentation')

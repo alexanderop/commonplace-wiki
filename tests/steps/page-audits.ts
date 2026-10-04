@@ -48,6 +48,8 @@ Then('its shared controls remain accessible and interactive', async ({ page, $te
     await page.getByRole('button', { name: t.menu, exact: true }).click()
     await expect(page.getByRole('navigation', { name: t.notes })).toBeVisible()
     await audit(page, $testInfo, 'mobile-navigation')
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog')).not.toBeVisible()
   }
   const trigger = page.getByRole('button').filter({ hasText: t.findThoughts })
   await trigger.click()
