@@ -77,6 +77,22 @@ Use `::insight{title="An observation"}` and `::source-reference{source="other-no
 
 Run `pnpm content` after changing notes. Restart `pnpm dev` or rebuild to load the new collection. Compilation fails on duplicate IDs, unsupported components and broken or unpublished references.
 
+## Start with an empty wiki
+
+```sh
+pnpm content:reset                       # preview public content removal
+pnpm content:reset --yes                 # delete all public content
+pnpm content:reset --include-private --yes # delete public AND private content
+```
+
+This removes all files in the selected content directories except `.gitkeep`,
+including your own notes, and clears generated collections, production output
+and the content database cache. It preserves the app, `raw/`, activity logs and
+Git history. Private notes are ignored by Git and may have no recoverable copy.
+Stop the running server first; restart with `pnpm dev` or rebuild with
+`pnpm build`. Browser offline copies remain until the site updates or its stored
+data is cleared. The command does not commit, push or delete a deployed site.
+
 ## Keep private notes private
 
 The default build reads only `apps/wiki/content/public`. `pnpm build:personal` includes `apps/wiki/content/private` too. That command replaces `apps/wiki/.output/public` with a personal edition. Never publish a personal build. Serve personal and public editions on different origins. Sharing a localhost link does not publish a page.
