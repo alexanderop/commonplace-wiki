@@ -1,0 +1,32 @@
+{
+  "name": "@commonplace/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./button": "./src/components/button/index.ts",
+    "./dialog": "./src/components/dialog/index.ts",
+    "./input": "./src/components/input/index.ts",
+    "./select": "./src/components/select/index.ts",
+    "./badge": "./src/components/badge/index.ts",
+    "./styles.css": "./src/styles/index.css"
+  },
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vue": "3.5.43",
+    "vue-tsc": "^3.1.0"
+  },
+  "dependencies": {
+    "reka-ui": "^2.10.5"
+  }
+}

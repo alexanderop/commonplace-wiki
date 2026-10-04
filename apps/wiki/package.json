@@ -1,0 +1,30 @@
+{
+  "name": "@commonplace/wiki",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm content && nuxt dev --host 127.0.0.1 --port 3100",
+    "build": "pnpm content && nuxt generate",
+    "preview": "node scripts/serve.ts",
+    "typecheck": "pnpm content && nuxt typecheck",
+    "verify": "pnpm typecheck && pnpm build && node scripts/check-output.ts",
+    "content": "node scripts/compile-wiki.ts",
+    "build:personal": "WIKI_AUDIENCE=personal pnpm build"
+  },
+  "dependencies": {
+    "@comark/vue": "0.7.0",
+    "@nuxt/content": "3.16.1",
+    "@vite-pwa/nuxt": "1.1.1",
+    "comark": "0.7.0",
+    "force-graph": "^1.49.0",
+    "nuxt": "4.5.2",
+    "vue": "3.5.43",
+    "zod": "^4.0.0",
+    "@commonplace/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vue-tsc": "^3.1.0"
+  }
+}

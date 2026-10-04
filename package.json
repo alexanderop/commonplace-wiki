@@ -1,0 +1,21 @@
+{
+  "name": "commonplace-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.2",
+  "scripts": {
+    "dev": "pnpm --filter @commonplace/wiki dev",
+    "build": "pnpm --filter @commonplace/wiki build",
+    "preview": "pnpm --filter @commonplace/wiki preview",
+    "content": "pnpm --filter @commonplace/wiki content",
+    "build:personal": "pnpm --filter @commonplace/wiki build:personal",
+    "typecheck": "pnpm --filter @commonplace/ui typecheck && pnpm --filter @commonplace/wiki typecheck",
+    "verify": "pnpm --filter @commonplace/ui typecheck && pnpm --filter @commonplace/wiki verify",
+    "test:compat": "bddgen && playwright test",
+    "test:demo": "WIKI_TEST_DEMO=1 pnpm test:compat"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "playwright-bdd": "9.2.1"
+  }
+}
